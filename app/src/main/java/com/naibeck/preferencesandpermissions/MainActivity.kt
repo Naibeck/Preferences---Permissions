@@ -10,8 +10,8 @@ import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
-    var binding: ActivityMainBinding? = null
-    val preferences: SharedPreferences by lazy {
+    private var binding: ActivityMainBinding? = null
+    private val preferences: SharedPreferences by lazy {
         this.getSharedPreferences(UDB_PREFS, Context.MODE_PRIVATE)
     }
 
@@ -22,8 +22,12 @@ class MainActivity : AppCompatActivity() {
             binding.signUpButton.setOnClickListener {
                 storeCredentials(binding.usernameInput.text.toString(), binding.passwordInput.text.toString())
             }
+            binding.preferencesValuesText.text = loadPreferenceValues()
         }
     }
+
+    private fun loadPreferenceValues(): String = "Username: ${preferences.getString(USERNAME, "empty")}, Password: ${preferences.getString(
+            PASSWORD, "empty")}"
 
     private fun storeCredentials(username: String, password: String) {
         preferences.edit()

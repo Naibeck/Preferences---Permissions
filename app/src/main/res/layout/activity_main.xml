@@ -27,5 +27,11 @@
             android:text="@string/sign_up_action"
             android:layout_gravity="end"/>
 
+        <TextView
+            android:id="@+id/preferencesValuesText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Headline"/>
+
     </LinearLayout>
 </layout>
