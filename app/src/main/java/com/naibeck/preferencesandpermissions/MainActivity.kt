@@ -1,6 +1,7 @@
 package com.naibeck.preferencesandpermissions
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +24,9 @@ class MainActivity : AppCompatActivity() {
                 storeCredentials(binding.usernameInput.text.toString(), binding.passwordInput.text.toString())
             }
             binding.preferencesValuesText.text = loadPreferenceValues()
+            binding.moveToWebViewAction.setOnClickListener {
+                startActivity(Intent(this, WebActivity::class.java))
+            }
         }
     }
 
