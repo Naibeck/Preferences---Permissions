@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.naibeck.preferencesandpermissions.databinding.ActivityRuntimePermissionBinding
 
@@ -18,7 +19,11 @@ class RuntimePermissionActivity : AppCompatActivity() {
             requestRuntimePermission()
         }
         binding.checkRuntimeAction.setOnClickListener {
-            checkRuntimePermission()
+            if (checkRuntimePermission()) {
+                Toast.makeText(this, "Permission is already granted", Toast.LENGTH_SHORT).show()
+            } else {
+                requestRuntimePermission()
+            }
         }
     }
 
@@ -58,9 +63,8 @@ class RuntimePermissionActivity : AppCompatActivity() {
     private fun isFineLocationGranted(grantResults: IntArray) =
         grantResults[0] == PackageManager.PERMISSION_GRANTED
 
-    private fun checkRuntimePermission() {
-        TODO("Not yet implemented")
-    }
+    private fun checkRuntimePermission(): Boolean =
+        ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
 
     private fun requestRuntimePermission() {
         ActivityCompat.requestPermissions(this, arrayOf(ACCESS_FINE_LOCATION), LOCATION_REQUEST)
