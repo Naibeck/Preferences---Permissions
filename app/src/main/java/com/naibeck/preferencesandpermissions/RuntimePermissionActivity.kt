@@ -1,7 +1,11 @@
 package com.naibeck.preferencesandpermissions
 
+import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.naibeck.preferencesandpermissions.databinding.ActivityRuntimePermissionBinding
 
@@ -17,11 +21,38 @@ class RuntimePermissionActivity : AppCompatActivity() {
         }
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            LOCATION_REQUEST -> {
+                handleFineLocationPermission(grantResults)
+            }
+        }
+    }
+
+    private fun handleFineLocationPermission(grantResults: IntArray) {
+        if (isFineLocationGranted(grantResults)) {
+            Toast.makeText(this, "Location permission was granted", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Location permission was not granted", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun isFineLocationGranted(grantResults: IntArray) =
+        grantResults[0] == PackageManager.PERMISSION_GRANTED
+
     private fun checkRuntimePermission() {
         TODO("Not yet implemented")
     }
 
     private fun requestRuntimePermission() {
-        TODO("Not yet implemented")
+        ActivityCompat.requestPermissions(this, arrayOf(ACCESS_FINE_LOCATION), LOCATION_REQUEST)
+    }
+
+    companion object {
+        const val LOCATION_REQUEST = 0
     }
 }
