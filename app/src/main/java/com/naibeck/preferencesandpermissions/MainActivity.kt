@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
             binding.moveToWebViewAction.setOnClickListener {
                 startActivity(Intent(this, WebActivity::class.java))
             }
+            binding.moveToRuntimeAction.setOnClickListener {
+                startActivity(Intent(this, RuntimePermissionActivity::class.java))
+            }
         }
     }
 

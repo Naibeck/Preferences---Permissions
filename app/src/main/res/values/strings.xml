@@ -3,4 +3,7 @@
     <string name="username">Username</string>
     <string name="sign_up_action">Sign up</string>
     <string name="move_to_webview">Move to WebView</string>
+    <string name="move_to_runtime_permission">Move to runtime permission</string>
+    <string name="request_location_permission">Request location permission</string>
+    <string name="check_runtime_permission">Check runtime permission</string>
 </resources>

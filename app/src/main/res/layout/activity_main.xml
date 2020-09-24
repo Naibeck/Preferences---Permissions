@@ -39,5 +39,11 @@
             android:layout_height="wrap_content"
             android:text="@string/move_to_webview"/>
 
+        <Button
+            android:id="@+id/moveToRuntimeAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/move_to_runtime_permission"/>
+
     </LinearLayout>
 </layout>
